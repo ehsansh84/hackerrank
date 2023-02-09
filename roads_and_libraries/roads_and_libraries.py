@@ -96,7 +96,7 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
 
 if __name__ == '__main__':
     start = time.time_ns()
-    with open('roads_and_libraries/data', 'r') as f:
+    with open('data', 'r') as f:
         q = int(f.readline().strip())
 
         for q_itr in range(q):
