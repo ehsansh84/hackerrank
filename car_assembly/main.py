@@ -9,7 +9,6 @@ class AssemblyOperation(NamedTuple):
 
 def minimum_assembly_time(ops: List[AssemblyOperation]) -> int:
     tasks_dic = {task.name: {'duration': task.duration, 'dependencies': task.dependencies} for task in ops }
-    # print(tasks_dic)
     def get_dependencies_times(task: AssemblyOperation):
         dep_times = []
         if not task.dependencies:
@@ -37,15 +36,10 @@ def minimum_assembly_time(ops: List[AssemblyOperation]) -> int:
 
 def main():
     ops = []
-    # for line in sys.stdin:
     with open('data-tc11') as f:
         for line in f.readlines():
-            # print(line)
             name, duration, *dependencies = line.rstrip().split()
-            # print(name, duration, dependencies)
             ops.append(AssemblyOperation(name, int(duration), dependencies))
-    # print('===============')
-    # print(ops)
     print(minimum_assembly_time(ops))
 
 
