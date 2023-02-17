@@ -19,6 +19,8 @@ def minimum_assembly_time(ops: List[AssemblyOperation]) -> int:
         for dep in task.dependencies:
             try:
                 temp = AssemblyOperation(dep, int(tasks_dic[dep]['duration']), tasks_dic[dep]['dependencies'])
+                if task.name in tasks_dic[dep]['dependencies']:
+                    return -1
                 dep_time = tasks_dic[dep]['duration'] + get_dependencies_times(temp)
                 dep_times.append(dep_time)
             except KeyError:
@@ -38,7 +40,7 @@ def minimum_assembly_time(ops: List[AssemblyOperation]) -> int:
 def main():
     ops = []
     # for line in sys.stdin:
-    with open('data-tc11') as f:
+    with open('data-tc6') as f:
         for line in f.readlines():
             # print(line)
             name, duration, *dependencies = line.rstrip().split()
